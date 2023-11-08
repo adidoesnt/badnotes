@@ -11,5 +11,8 @@
   "scripts": {
     "dev": "bun --watch run src/index.ts",
     "start": "bun run src/index.ts"
+  },
+  "dependencies": {
+    "neo4j-driver": "^5.14.0"
   }
 }
