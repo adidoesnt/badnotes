@@ -1,7 +1,17 @@
-import { Entity, findAll } from "./db/db";
+import express from "express";
+import { json, urlencoded } from "body-parser";
+import { initRoutes } from "./routes";
+import { findAll } from "./repository/read";
 
-const { USER, NOTE } = Entity;
+const { SERVER_PORT } = process.env;
+const PORT = SERVER_PORT || 8080;
 
-const users = await findAll(USER);
-const notes = await findAll(NOTE);
-console.log({ users }, { notes });
+const app = express();
+app.use(json());
+app.use(urlencoded({ extended: true }));
+
+initRoutes(app);
+
+app.listen(PORT, () => {
+  console.log(`badnotes server listening on port ${PORT}`);
+});
