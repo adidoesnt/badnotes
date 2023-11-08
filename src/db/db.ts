@@ -1,4 +1,4 @@
-import neo4j, { Record } from "neo4j-driver";
+import neo4j, { Driver, Session } from "neo4j-driver";
 
 const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD } = process.env;
 
@@ -7,20 +7,25 @@ export enum Entity {
   NOTE = "NOTE",
 }
 
-export const findAll = async (entity?: keyof typeof Entity) => {
-  const driver = neo4j.driver(
-    `bolt://${DB_HOST}:${DB_PORT}`,
-    neo4j.auth.basic(`${DB_USERNAME}`, `${DB_PASSWORD}`)
-  );
+class Neo4j {
+  private static instance: Neo4j;
+  driver: Driver;
+  session: Session;
 
-  const session = driver.session();
-  const queryVar = entity ? `n:${entity}` : "(n)";
-  const result = await session.run(`MATCH (${queryVar}) RETURN n`);
-  const records: Array<Record> = [];
-  result.records.forEach((record) => {
-    records.push(record.get("n").properties);
-  });
-  session.close();
-  driver.close();
-  return records;
-};
+  private constructor() {
+    this.driver = neo4j.driver(
+      `bolt://${DB_HOST}:${DB_PORT}`,
+      neo4j.auth.basic(`${DB_USERNAME}`, `${DB_PASSWORD}`)
+    );
+    this.session = this.driver.session();
+  }
+
+  public static getInstance() {
+    if(!this.instance) {
+      Neo4j.instance = new Neo4j();
+    }
+    return Neo4j.instance;
+  }
+}
+
+export const database = Neo4j.getInstance();
