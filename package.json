@@ -24,6 +24,7 @@
     },
     "_moduleAliases": {
         "@db": "src/db",
+        "@controller": "src/controller",
         "@gql": "src/gql",
         "@service": "src/service",
         "@repository": "src/repository",
