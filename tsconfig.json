@@ -1,37 +1,39 @@
 {
-  "compilerOptions": {
-    "lib": ["ESNext"],
-    "module": "esnext",
-    "target": "esnext",
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "composite": true,
-    "strict": true,
-    "downlevelIteration": true,
-    "skipLibCheck": true,
-    "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
-    "types": [
-      "bun-types" // add Bun global
-    ],
-    "baseUrl": "src",
-    "paths": {
-      "@db": ["db"],
-      "@db/*": ["db/*"],
-      "@types": ["types"],
-      "@types/*": ["types/*"],
-      "@gql": ["gql"],
-      "@gql/*": ["gql/*"],
-      "@repository": ["repository"],
-      "@repository/*": ["repository/*"],
-      "@service": ["service"],
-      "@service/*": ["service/*"],
-      "@controller": ["controller"],
-      "@controller/*": ["controller/*"]
+    "compilerOptions": {
+        "lib": ["ESNext"],
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "bundler",
+        "moduleDetection": "force",
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "composite": true,
+        "strict": true,
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowJs": true,
+        "types": [
+            "bun-types" // add Bun global
+        ],
+        "baseUrl": "src",
+        "paths": {
+            "@cache": ["cache"],
+            "@cache/*": ["cache/*"],
+            "@db": ["db"],
+            "@db/*": ["db/*"],
+            "@types": ["types"],
+            "@types/*": ["types/*"],
+            "@gql": ["gql"],
+            "@gql/*": ["gql/*"],
+            "@repository": ["repository"],
+            "@repository/*": ["repository/*"],
+            "@service": ["service"],
+            "@service/*": ["service/*"],
+            "@controller": ["controller"],
+            "@controller/*": ["controller/*"]
+        }
     }
-  }
 }

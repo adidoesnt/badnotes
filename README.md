@@ -1,8 +1,11 @@
 # BadNotes
+
 ## Description
+
 This is a simple project I'm working on to try out Bun and Neo4j! It's a simple notes application where you can add friends and see each other's notes.
 
 ## Local Setup
+
 To install dependencies:
 
 ```bash
@@ -14,7 +17,7 @@ To run:
 ```bash
 bun run start
 
-# or 
+# or
 
 bun run dev
 ```

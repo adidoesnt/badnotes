@@ -1,7 +1,8 @@
-import express from "express";
-import { json, urlencoded } from "body-parser";
-import { schema } from "@gql/query";
-import { graphqlHTTP } from "express-graphql";
+import express from 'express';
+import { json, urlencoded } from 'body-parser';
+import { schema } from '@gql/query';
+import { graphqlHTTP } from 'express-graphql';
+import { cache } from '@cache';
 
 const { NODE_ENV } = process.env;
 
@@ -13,13 +14,14 @@ app.use(json());
 app.use(urlencoded({ extended: true }));
 
 app.use(
-  "/",
-  graphqlHTTP({
-      schema,
-      graphiql: NODE_ENV === "DEV",
-  })
+    '/',
+    graphqlHTTP({
+        schema,
+        graphiql: NODE_ENV === 'DEV'
+    })
 );
 
 app.listen(PORT, () => {
-  console.log(`badnotes server listening on port ${PORT}`);
+    cache.connect();
+    console.log(`badnotes server listening on port ${PORT}`);
 });
