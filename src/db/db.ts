@@ -2,11 +2,6 @@ import neo4j, { Driver, Record, Session } from 'neo4j-driver'
 
 const { DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD } = process.env
 
-export enum Entity {
-    USER = 'USER',
-    NOTE = 'NOTE'
-}
-
 class Neo4j {
     private static instance: Neo4j
     driver: Driver
@@ -26,7 +21,7 @@ class Neo4j {
     }
 
     public async runQuery(query: string, resultVar?: string) {
-        const session = this.driver.session()
+        const session: Session = this.driver.session()
         const transaction = session.beginTransaction()
         try {
             const result = await transaction.run(query)
