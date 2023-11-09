@@ -1,2 +1,2 @@
-export { findUserController } from './user';
-export { findNoteController } from './note'
+export { UserController } from './user'
+export { NoteController } from './note'

@@ -5,7 +5,7 @@ import {
   GraphQLList,
 } from "graphql";
 import { NoteType, UserType } from "@gql/types";
-import { findUserController, findNoteController } from "@controller";
+import { UserController, NoteController } from "@controller";
 
 const QueryRoot = new GraphQLObjectType({
   name: "Query",
@@ -20,7 +20,7 @@ const QueryRoot = new GraphQLObjectType({
         username: { type: GraphQLString },
         uuid: { type: GraphQLString },
       },
-      resolve: findUserController,
+      resolve: UserController.findUserController,
     },
     notes: {
       type: new GraphQLList(NoteType),
@@ -29,7 +29,7 @@ const QueryRoot = new GraphQLObjectType({
         content: { type: GraphQLString },
         uid: { type: GraphQLString },
       },
-      resolve: findNoteController,
+      resolve: NoteController.findNoteController,
     },
   }),
 });

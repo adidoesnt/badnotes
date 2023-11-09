@@ -1,13 +1,27 @@
-import { Note } from "@types";
+import { NoteRepository } from '@repository'
+import { Note } from '@types'
 
-export const findByUID = async (notes: Note[], uid: string) => {
-    if (uid) return notes.filter((note) => note.uid === uid);
-};
+export class NoteService {
+    static findAllNotes = async () => await NoteRepository.findAllNotes()
 
-export const findByTitle = async (notes: Note[], title: string) => {
-    if (title) return notes.filter((note) => note.title.includes(title));
-};
+    static findByUID = async (notes: Note[], uid: string) => {
+        if (uid) return notes.filter((note) => note.uid === uid)
+    }
 
-export const findByContent = async (notes: Note[], content: string) => {
-    if (content) return notes.filter((note) => note.content.includes(content));
-};
+    static findByTitle = async (notes: Note[], title: string) => {
+        if (title) return notes.filter((note) => note.title.includes(title))
+    }
+
+    static findByContent = async (notes: Note[], content: string) => {
+        if (content)
+            return notes.filter((note) => note.content.includes(content))
+    }
+
+    static findByUserUUID = async (uuid: string) => {
+        return await NoteRepository.findByUserUUID(uuid);
+    }
+
+    static findByUsername = async (username: string) => {
+        return await NoteRepository.findByUsername(username);
+    }
+}

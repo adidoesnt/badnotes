@@ -1,2 +1,2 @@
-export { findByUID, findByTitle, findByContent } from "./note";
-export { findByUUID, findByUsername } from "./user";
+export { NoteService } from './note'
+export { UserService } from './user'

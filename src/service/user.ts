@@ -1,9 +1,14 @@
-import { User } from "@types";
+import { UserRepository } from '@repository'
+import { User } from '@types'
 
-export const findByUUID = async (users: User[], uuid: string) => {
-    if (uuid) return users.filter((user) => user.uuid === uuid);
-};
+export class UserService {
+    static findAllUsers = async () => await UserRepository.findAllUsers()
 
-export const findByUsername = async (users: User[], username: string) => {
-    if (username) return users.filter((user) => user.username === username);
-};
+    static findByUUID = async (users: User[], uuid: string) => {
+        if (uuid) return users.filter((user) => user.uuid === uuid)
+    }
+
+    static findByUsername = async (users: User[], username: string) => {
+        if (username) return users.filter((user) => user.username === username)
+    }
+}
