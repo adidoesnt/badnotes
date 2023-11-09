@@ -1,2 +1,2 @@
 export type { User } from './user';
-export type { Note } from './note'
+export type { Note } from './note';

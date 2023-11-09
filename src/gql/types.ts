@@ -1,6 +1,6 @@
-import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql'
-import { User, Note } from '@types'
-import { NoteController, UserController } from '@controller'
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
+import { User, Note } from '@types';
+import { NoteController, UserController } from '@controller';
 
 export const UserType = new GraphQLObjectType({
     name: 'User',
@@ -18,7 +18,7 @@ export const UserType = new GraphQLObjectType({
             resolve: NoteController.getUserNotesController
         }
     })
-})
+});
 
 export const NoteType = new GraphQLObjectType({
     name: 'Note',
@@ -36,4 +36,4 @@ export const NoteType = new GraphQLObjectType({
             resolve: (note: Note) => note.uid
         }
     })
-})
+});
