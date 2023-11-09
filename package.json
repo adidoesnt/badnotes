@@ -1,24 +1,32 @@
 {
-  "name": "badnotes",
-  "module": "src/index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/body-parser": "^1.19.5",
-    "@types/express": "^4.17.21",
-    "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "scripts": {
-    "dev": "NODE_ENV=DEV bun --watch run src/index.ts",
-    "start": "NODE_ENV=PROD bun run src/index.ts"
-  },
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "express-graphql": "^0.12.0",
-    "graphql": "^16.8.1",
-    "neo4j-driver": "^5.14.0"
-  }
+    "name": "badnotes",
+    "module": "src/index.ts",
+    "type": "module",
+    "devDependencies": {
+        "@types/body-parser": "^1.19.5",
+        "@types/express": "^4.17.21",
+        "bun-types": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "dev": "NODE_ENV=DEV bun --watch run src/index.ts",
+        "start": "NODE_ENV=PROD bun run src/index.ts"
+    },
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "express": "^4.18.2",
+        "express-graphql": "^0.12.0",
+        "graphql": "^16.8.1",
+        "module-alias": "^2.2.3",
+        "neo4j-driver": "^5.14.0"
+    },
+    "_moduleAliases": {
+        "@db": "src/db",
+        "@gql": "src/gql",
+        "@service": "src/service",
+        "@repository": "src/repository",
+        "@types": "src/types"
+    }
 }

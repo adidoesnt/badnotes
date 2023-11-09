@@ -1,6 +1,6 @@
 import express from "express";
 import { json, urlencoded } from "body-parser";
-import { schema } from "./gql/query";
+import { schema } from "@gql/query";
 import { graphqlHTTP } from "express-graphql";
 
 const { NODE_ENV } = process.env;

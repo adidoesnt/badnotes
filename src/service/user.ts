@@ -1,4 +1,4 @@
-import { User } from "../types";
+import { User } from "@types";
 
 export const findByUUID = async (users: User[], uuid: string) => {
     if (uuid) return users.filter((user) => user.uuid === uuid);

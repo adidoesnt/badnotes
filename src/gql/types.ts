@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLString } from "graphql";
-import { User, Note } from "../types";
+import { User, Note } from "@types";
 
 export const UserType = new GraphQLObjectType({
     name: "User",

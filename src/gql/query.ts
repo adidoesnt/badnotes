@@ -4,11 +4,16 @@ import {
     GraphQLString,
     GraphQLList,
 } from "graphql";
-import { findAllNotes, findAllUsers } from "../repository/read";
-import { NoteType, UserType } from "./types";
-import { Note, User } from "../types";
-import { findByUUID, findByUsername } from "../service/user";
-import { findByContent, findByTitle, findByUID } from "../service/note";
+import { findAllNotes, findAllUsers } from "@repository";
+import { NoteType, UserType } from "@gql/types";
+import { Note, User } from "@types";
+import {
+    findByUUID,
+    findByUsername,
+    findByContent,
+    findByTitle,
+    findByUID,
+} from "@service";
 
 const QueryRoot = new GraphQLObjectType({
     name: "Query",

@@ -1,5 +1,5 @@
 import { Record } from "neo4j-driver";
-import { Entity, database } from "../db/db";
+import { Entity, database } from "@db";
 
 const { USER, NOTE } = Entity;
 

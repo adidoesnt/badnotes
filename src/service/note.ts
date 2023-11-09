@@ -1,4 +1,4 @@
-import { Note } from "../types";
+import { Note } from "@types";
 
 export const findByUID = async (notes: Note[], uid: string) => {
     if (uid) return notes.filter((note) => note.uid === uid);
