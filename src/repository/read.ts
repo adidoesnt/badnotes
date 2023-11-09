@@ -1,6 +1,8 @@
 import { Record } from "neo4j-driver";
 import { Entity, database } from "../db/db";
 
+const { USER, NOTE } = Entity;
+
 export const findAll = async (entity?: Entity) => {
   const queryVar = entity ? `n:${entity}` : "(n)";
   const query = `MATCH (${queryVar}) RETURN n`;
@@ -11,3 +13,6 @@ export const findAll = async (entity?: Entity) => {
   });
   return records;
 };
+
+export const findAllUsers = async () => await findAll(USER);
+export const findAllNotes = async () => await findAll(NOTE);
