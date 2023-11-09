@@ -20,8 +20,4 @@ export class NoteService {
     static findByUserUUID = async (uuid: string) => {
         return await NoteRepository.findByUserUUID(uuid);
     }
-
-    static findByUsername = async (username: string) => {
-        return await NoteRepository.findByUsername(username);
-    }
 }

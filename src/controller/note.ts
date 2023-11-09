@@ -19,8 +19,8 @@ export class NoteController {
         parent: User,
         _: Record<string, string>
     ) => {
-        const { uuid, username } = parent;
-        if(uuid) return NoteService.findByUserUUID(uuid);
-        if(username) return NoteService.findByUsername(username);
+        const { uuid } = parent
+        if (uuid) return await NoteService.findByUserUUID(uuid)
+        return []
     }
 }
