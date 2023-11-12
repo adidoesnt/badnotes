@@ -1,5 +1,6 @@
 import { UserRepository } from '@repository';
 import { User } from '@types';
+import { v4 as uuidv4 } from 'uuid';
 
 export class UserService {
     static findAllUsers = async () => await UserRepository.findAllUsers();
@@ -10,5 +11,14 @@ export class UserService {
 
     static findByUsername = async (users: User[], username: string) => {
         if (username) return users.filter((user) => user.username === username);
+    };
+
+    static createUser = async (username: string) => {
+        const uuid = uuidv4();
+        return await UserRepository.createUser(username, uuid);
+    };
+
+    static updateUser = async (uuid: string, username: string) => {
+        return await UserRepository.updateUser(username, uuid);
     };
 }

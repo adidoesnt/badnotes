@@ -51,6 +51,32 @@ class Neo4j {
         }
         session.close();
     }
+
+    public async runMutation(query: string, resultVar?: string) {
+        const session: Session = this.driver.session();
+        const transaction = session.beginTransaction();
+        try {
+            const result = await transaction.run(query);
+            const records: Array<Record> = [];
+            result.records.forEach((record) => {
+                const value = record.get(resultVar ?? 'result');
+                if (Array.isArray(value)) {
+                    value.forEach((sub: { properties: Record }) =>
+                        records.push(sub.properties)
+                    );
+                } else {
+                    records.push(value.properties);
+                }
+            });
+            await transaction.commit();
+            await cache.clear();
+            return records;
+        } catch (error) {
+            console.error(error);
+            await transaction.rollback();
+        }
+        session.close();
+    }
 }
 
 export const database = Neo4j.getInstance();
