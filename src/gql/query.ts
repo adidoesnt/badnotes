@@ -7,24 +7,7 @@ import {
 import { NoteType, UserType } from '@gql/types';
 import { UserController, NoteController } from '@controller';
 
-const MutationRoot = new GraphQLObjectType({
-    name: 'Mutation',
-    fields: () => ({
-        health: {
-            type: GraphQLString,
-            resolve: () => 'Sanity check ok'
-        },
-        createUser: {
-            type: UserType,
-            args: {
-                username: { type: GraphQLString }
-            },
-            resolve: UserController.createUserController
-        }
-    })
-});
-
-const QueryRoot = new GraphQLObjectType({
+export const QueryRoot = new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
         health: {
@@ -51,7 +34,3 @@ const QueryRoot = new GraphQLObjectType({
     })
 });
 
-export const schema = new GraphQLSchema({
-    query: QueryRoot,
-    mutation: MutationRoot
-});
