@@ -1,40 +1,40 @@
 {
-  "name": "badnotes",
-  "module": "src/index.ts",
-  "type": "module",
-  "devDependencies": {
-    "@types/body-parser": "^1.19.5",
-    "@types/express": "^4.17.21",
-    "@types/uuid": "^9.0.7",
-    "bun-types": "latest",
-    "prettier": "^3.0.3"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "scripts": {
-    "dev": "NODE_ENV=DEV bun --watch run src/index.ts",
-    "start": "NODE_ENV=PROD bun run src/index.ts",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx,css,scss,json,md}'"
-  },
-  "dependencies": {
-    "@types/redis": "^4.0.11",
-    "body-parser": "^1.20.2",
-    "express": "^4.18.2",
-    "express-graphql": "^0.12.0",
-    "graphql": "^16.8.1",
-    "module-alias": "^2.2.3",
-    "neo4j-driver": "^5.14.0",
-    "redis": "^4.6.10",
-    "uuid": "^9.0.1"
-  },
-  "_moduleAliases": {
-    "@db": "src/db",
-    "@cache": "src/cache",
-    "@controller": "src/controller",
-    "@gql": "src/gql",
-    "@service": "src/service",
-    "@repository": "src/repository",
-    "@types": "src/types"
-  }
+    "name": "badnotes",
+    "module": "src/index.ts",
+    "type": "module",
+    "devDependencies": {
+        "@types/body-parser": "^1.19.5",
+        "@types/express": "^4.17.21",
+        "@types/uuid": "^9.0.7",
+        "bun-types": "latest",
+        "prettier": "^3.0.3"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "dev": "NODE_ENV=DEV bun --watch run src/index.ts",
+        "start": "NODE_ENV=PROD bun run src/index.ts",
+        "format": "prettier --write '**/*.{js,jsx,ts,tsx,css,scss,json,md}'"
+    },
+    "dependencies": {
+        "@types/redis": "^4.0.11",
+        "body-parser": "^1.20.2",
+        "express": "^4.18.2",
+        "express-graphql": "^0.12.0",
+        "graphql": "^16.8.1",
+        "module-alias": "^2.2.3",
+        "neo4j-driver": "^5.14.0",
+        "redis": "^4.6.10",
+        "uuid": "^9.0.1"
+    },
+    "_moduleAliases": {
+        "@db": "src/db",
+        "@cache": "src/cache",
+        "@controller": "src/controller",
+        "@gql": "src/gql",
+        "@service": "src/service",
+        "@repository": "src/repository",
+        "@types": "src/types"
+    }
 }

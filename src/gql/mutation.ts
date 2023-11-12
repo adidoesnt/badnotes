@@ -1,6 +1,6 @@
-import { UserController } from "@controller";
-import { GraphQLObjectType, GraphQLString } from "graphql";
-import { UserType } from "./types";
+import { UserController } from '@controller';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
+import { UserType } from './types';
 
 export const MutationRoot = new GraphQLObjectType({
     name: 'Mutation',
@@ -18,4 +18,3 @@ export const MutationRoot = new GraphQLObjectType({
         }
     })
 });
-

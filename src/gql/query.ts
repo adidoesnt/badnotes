@@ -33,4 +33,3 @@ export const QueryRoot = new GraphQLObjectType({
         }
     })
 });
-
