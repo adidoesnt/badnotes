@@ -1,6 +1,6 @@
 import express from 'express';
 import { json, urlencoded } from 'body-parser';
-import { schema } from '@gql/query';
+import { schema } from '@gql/schema';
 import { graphqlHTTP } from 'express-graphql';
 import { cache } from '@cache';
 
