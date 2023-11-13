@@ -23,4 +23,12 @@ export class NoteController {
         if (uuid) return await NoteService.findByUserUUID(uuid);
         return [];
     };
+
+    static createUserNoteController = async (
+        _: any,
+        args: Record<string, any>
+    ) => {
+        const { uuid, title, content } = args;
+        return await NoteService.createByUserUUID(uuid, title, content);
+    };
 }

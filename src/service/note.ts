@@ -1,5 +1,6 @@
 import { NoteRepository } from '@repository';
 import { Note } from '@types';
+import { v4 as uuidv4 } from 'uuid';
 
 export class NoteService {
     static findAllNotes = async () => await NoteRepository.findAllNotes();
@@ -19,5 +20,22 @@ export class NoteService {
 
     static findByUserUUID = async (uuid: string) => {
         return await NoteRepository.findByUserUUID(uuid);
+    };
+
+    static createByUserUUID = async (
+        uuid: string,
+        title: string,
+        content: string
+    ) => {
+        const time = new Date();
+        const utc = time.toISOString();
+        const uid = uuidv4();
+        return await NoteRepository.createNoteByUserUUID(
+            uuid,
+            uid,
+            title,
+            content,
+            utc
+        );
     };
 }

@@ -1,6 +1,6 @@
-import { UserController } from '@controller';
+import { NoteController, UserController } from '@controller';
 import { GraphQLObjectType, GraphQLString } from 'graphql';
-import { UserType } from './types';
+import { NoteType, UserType } from './types';
 
 export const MutationRoot = new GraphQLObjectType({
     name: 'Mutation',
@@ -23,6 +23,15 @@ export const MutationRoot = new GraphQLObjectType({
                 username: { type: GraphQLString }
             },
             resolve: UserController.updateUserController
+        },
+        createNote: {
+            type: NoteType,
+            args: {
+                uuid: { type: GraphQLString },
+                title: { type: GraphQLString },
+                content: { type: GraphQLString }
+            },
+            resolve: NoteController.createUserNoteController
         }
     })
 });
