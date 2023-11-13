@@ -20,11 +20,11 @@ export class NoteRepository {
         content: string,
         time: string
     ) => {
-        const query =
+        const mutation =
             `MATCH (u:USER { uuid: "${uuid}"}) ` +
             `CREATE (n:NOTE { uid:" ${uid}", title: "${title}", content: "${content}" })<-[:WROTE { time: "${time}" }]-(u) ` +
             `RETURN n`;
-        const result = await database.runMutation(query, 'n');
+        const result = await database.runMutation(mutation, 'n');
         return result?.pop();
     };
 }

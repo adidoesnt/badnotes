@@ -21,4 +21,8 @@ export class UserService {
     static updateUser = async (uuid: string, username: string) => {
         return await UserRepository.updateUser(username, uuid);
     };
+
+    static addFriend = async (uuid1: string, uuid2: string) => {
+        return await UserRepository.addFriend(uuid1, uuid2);
+    };
 }
