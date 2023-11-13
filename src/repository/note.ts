@@ -12,4 +12,19 @@ export class NoteRepository {
         const result = await database.runQuery(query);
         return result;
     };
+
+    static createNoteByUserUUID = async (
+        uuid: string,
+        uid: string,
+        title: string,
+        content: string,
+        time: string
+    ) => {
+        const query =
+            `MATCH (u:USER { uuid: "${uuid}"}) ` +
+            `CREATE (n:NOTE { uid:" ${uid}", title: "${title}", content: "${content}" })<-[:WROTE { time: "${time}" }]-(u) ` +
+            `RETURN n`;
+        const result = await database.runMutation(query, 'n');
+        return result?.pop();
+    };
 }
