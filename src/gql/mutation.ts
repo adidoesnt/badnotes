@@ -1,5 +1,5 @@
 import { NoteController, UserController } from '@controller';
-import { GraphQLObjectType, GraphQLString } from 'graphql';
+import { GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql';
 import { NoteType, UserType } from './types';
 
 export const MutationRoot = new GraphQLObjectType({
@@ -15,6 +15,14 @@ export const MutationRoot = new GraphQLObjectType({
                 username: { type: GraphQLString }
             },
             resolve: UserController.createUserController
+        },
+        addFriend: {
+            type: new GraphQLList(UserType),
+            args: {
+                uuid1: { type: GraphQLString },
+                uuid2: { type: GraphQLString }
+            },
+            resolve: UserController.addFriendController
         },
         updateUser: {
             type: UserType,

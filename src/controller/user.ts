@@ -16,8 +16,13 @@ export class UserController {
         return await UserService.createUser(username);
     };
 
-    static updateUserController = async (_: any, args: Record<string, any>) => {
+    static updateUserController = async (_: any, args: Record<string, string>) => {
         const { uuid, username } = args;
         return await UserService.updateUser(uuid, username);
     };
+
+    static addFriendController = async (_: any, args: Record<string, string>) => {
+        const { uuid1, uuid2 } = args;
+        return await UserService.addFriend(uuid1, uuid2);
+    }
 }

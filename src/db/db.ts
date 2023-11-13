@@ -52,11 +52,11 @@ class Neo4j {
         session.close();
     }
 
-    public async runMutation(query: string, resultVar?: string) {
+    public async runMutation(mutation: string, resultVar?: string) {
         const session: Session = this.driver.session();
         const transaction = session.beginTransaction();
         try {
-            const result = await transaction.run(query);
+            const result = await transaction.run(mutation);
             const records: Array<Record> = [];
             result.records.forEach((record) => {
                 const value = record.get(resultVar ?? 'result');
