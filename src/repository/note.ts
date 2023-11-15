@@ -36,10 +36,10 @@ export class NoteRepository {
         const { title, content } = updates;
         let setClause: string = ' ';
         if (title) {
-            setClause += `SET n.title = "${title} `;
+            setClause += `SET n.title = "${title}" `;
         }
         if (content) {
-            setClause += `SET n.content = "${content} `;
+            setClause += `SET n.content = "${content}" `;
         }
         const mutation =
             `MATCH (n:NOTE { uid: "${uid}"})` + setClause + 'RETURN n';
