@@ -26,9 +26,17 @@ export class NoteController {
 
     static createUserNoteController = async (
         _: any,
-        args: Record<string, any>
+        args: Record<string, string>
     ) => {
         const { uuid, title, content } = args;
         return await NoteService.createByUserUUID(uuid, title, content);
+    };
+
+    static updateNoteController = async (
+        _: any,
+        args: Record<string, string>
+    ) => {
+        const { uid, title, content } = args;
+        return await NoteService.updateByUID(uid, title, content);
     };
 }

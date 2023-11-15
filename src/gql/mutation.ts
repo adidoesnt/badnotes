@@ -40,6 +40,15 @@ export const MutationRoot = new GraphQLObjectType({
                 content: { type: GraphQLString }
             },
             resolve: NoteController.createUserNoteController
+        },
+        updateNote: {
+            type: NoteType,
+            args: {
+                uid: { type: GraphQLString },
+                title: { type: GraphQLString },
+                content: { type: GraphQLString }
+            },
+            resolve: NoteController.updateNoteController
         }
     })
 });
