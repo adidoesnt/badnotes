@@ -1,9 +1,4 @@
-import {
-    GraphQLSchema,
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLList
-} from 'graphql';
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql';
 import { NoteType, UserType } from '@gql/types';
 import { UserController, NoteController } from '@controller';
 

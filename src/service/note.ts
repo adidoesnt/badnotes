@@ -38,4 +38,17 @@ export class NoteService {
             utc
         );
     };
+
+    static updateByUID = async (
+        uid: string,
+        title?: string,
+        content?: string
+    ) => {
+        if (!title && !content) return null;
+        const updates = {
+            title,
+            content
+        };
+        return await NoteRepository.updateNoteByUID(uid, updates);
+    };
 }
