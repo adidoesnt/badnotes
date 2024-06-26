@@ -24,6 +24,6 @@
         "noUnusedParameters": false,
         "noPropertyAccessFromIndexSignature": false,
 
-        "baseUrl": "/src"
+        "baseUrl": "./src"
     }
 }

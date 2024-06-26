@@ -1,7 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import schema from "./gql";
-import { healthCheck, neode } from "./neode";
+import schema from "gql";
+import { healthCheck, neode } from "neo4j";
 
 const { PORT = 4000 } = process.env;
 
