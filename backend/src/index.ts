@@ -1,18 +1,30 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "./gql";
+import { healthCheck, neode } from "./neode";
 
 const { PORT = 4000 } = process.env;
 
-const server = new ApolloServer({ schema });
+try {
+    await healthCheck();
 
-const app = express();
-await server.start();
+    const server = new ApolloServer({
+        schema,
+        context: ({ req }) => ({ neode, req }),
+    });
 
-server.applyMiddleware({ app, path: "/api" });
+    const app = express();
+    await server.start();
 
-app.listen({ port: PORT }, () => {
-    console.log(
-        `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
-    );
-});
+    server.applyMiddleware({ app, path: "/api" });
+
+    app.listen({ port: PORT }, () => {
+        console.log(
+            `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
+        );
+    });
+} catch (e) {
+    const error = e as Error;
+    const { message = "Failed to start server" } = error;
+    console.error("Failed to start server", { message });
+}

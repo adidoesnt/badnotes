@@ -18,6 +18,7 @@
         "@graphql-tools/merge": "^9.0.4",
         "@graphql-tools/schema": "^10.0.4",
         "apollo-server-express": "^3.13.0",
-        "express": "^4.19.2"
+        "express": "^4.19.2",
+        "neode": "^0.4.9"
     }
 }
