@@ -9,7 +9,7 @@ export const note: Schema = {
             content: String!
             author: User!
             createdAt: String!
-            lastUpdatedAt: String!
+            updatedAt: String!
         }
 
         type Query {

@@ -7,7 +7,7 @@ export const user: Schema = {
             username: String!
             passwordHash: String!
             createdAt: String!
-            lastUpdatedAt: String!
+            updatedAt: String!
         }
 
         type Query {

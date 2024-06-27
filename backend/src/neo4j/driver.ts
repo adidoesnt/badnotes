@@ -1,4 +1,5 @@
 import Neode from "neode";
+import { registerNoteModel, registerUserModel } from "neo4j/models";
 
 const {
     NODE_ENV = "DEV",
@@ -26,3 +27,8 @@ export const neode: Neode = new Neode(
                 : "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
     },
 );
+
+export const registerModels = () => {
+    registerUserModel(neode);
+    registerNoteModel(neode);
+};

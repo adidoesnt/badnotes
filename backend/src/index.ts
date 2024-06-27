@@ -1,7 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "gql";
-import { healthCheck, neode } from "neo4j";
+import { healthCheck, neode, registerModels } from "neo4j";
 import { Logger } from "utils";
 
 const logger = new Logger();
@@ -10,6 +10,7 @@ const { PORT = 4000 } = process.env;
 
 try {
     await healthCheck();
+    registerModels();
 
     const server = new ApolloServer({
         schema,
