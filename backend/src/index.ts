@@ -3,8 +3,11 @@ import { ApolloServer } from "apollo-server-express";
 import schema from "gql";
 import { healthCheck, neode, registerModels } from "neo4j";
 import { Logger } from "utils";
+import { relative } from "path";
 
-const logger = new Logger();
+const logger = new Logger({
+    module: relative(__dirname, __filename),
+});
 
 const { PORT = 4000 } = process.env;
 

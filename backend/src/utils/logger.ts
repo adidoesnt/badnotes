@@ -22,6 +22,7 @@ type Config = {
     fileNames?: FileNames | string;
     useSingleLogFile?: boolean;
     onlyConsole?: boolean;
+    module?: string;
 };
 
 export class Logger {
@@ -51,9 +52,12 @@ export class Logger {
 
     getMessage(level: Level, message: string, additional?: object): string {
         const now = new Date().toLocaleString();
-        const formattedMessage = `[${now}] [${level}] ${message}`;
-        !this.config.onlyConsole && this.writeMessage(level, formattedMessage);
-        return LevelMap[level](formattedMessage, JSON.stringify(additional));
+        const { module = "default" } = this.config;
+        const preamble = `[${now}] [${module}] [${level}]`;
+        !this.config.onlyConsole && this.writeMessage(level, preamble);
+        const formattedPreamble = LevelMap[level](preamble);
+        const formattedMessage = `${formattedPreamble} ${message} ${additional ? JSON.stringify(additional) : ""}`;
+        return formattedMessage;
     }
 
     writeMessage(level: Level, formattedMessage: string): void {
