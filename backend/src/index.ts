@@ -6,12 +6,14 @@ import { Logger } from "utils";
 import { relative } from "path";
 
 const logger = new Logger({
-    module: relative(__dirname, __filename),
+    module: relative(process.cwd(), __filename),
 });
 
 const { PORT = 4000 } = process.env;
 
 try {
+    logger.info("Starting server");
+
     await healthCheck();
     registerModels();
 

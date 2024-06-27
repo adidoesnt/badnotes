@@ -1,5 +1,7 @@
 import Neode from "neode";
 import { registerNoteModel, registerUserModel } from "neo4j/models";
+import { Logger } from "utils";
+import { relative } from "path";
 
 const {
     NODE_ENV = "DEV",
@@ -9,6 +11,10 @@ const {
     DB_PASSWORD = "password",
     DB_NAME = "neo4j",
 } = process.env;
+
+const logger = new Logger({
+    module: relative(process.cwd(), __filename),
+});
 
 const DB_URI = `bolt://${DB_HOST}:${DB_PORT}`;
 
@@ -29,6 +35,7 @@ export const neode: Neode = new Neode(
 );
 
 export const registerModels = () => {
+    logger.debug("Registering models");
     registerUserModel(neode);
     registerNoteModel(neode);
 };
