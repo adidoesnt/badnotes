@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
+import type { Schema } from "gql/types";
 
-export const health = {
+export const health: Schema = {
     typeDefs: gql`
         type HealthStatus {
             status: Int!
