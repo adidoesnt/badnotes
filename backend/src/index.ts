@@ -2,7 +2,9 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "gql";
 import { healthCheck, neode } from "neo4j";
+import { Logger } from "utils";
 
+const logger = new Logger();
 const { PORT = 4000 } = process.env;
 
 try {
@@ -19,12 +21,12 @@ try {
     server.applyMiddleware({ app, path: "/api" });
 
     app.listen({ port: PORT }, () => {
-        console.log(
+        logger.info(
             `🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`,
         );
     });
 } catch (e) {
     const error = e as Error;
     const { message = "Failed to start server" } = error;
-    console.error("Failed to start server", { message });
+    logger.error("Failed to start server", { message });
 }
