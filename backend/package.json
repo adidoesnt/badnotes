@@ -3,7 +3,7 @@
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
-    "format": "prettier --write .",
+    "format": "prettier --write .",    
     "start": "bun run src/index.ts",
     "dev": "bun --watch run src/index.ts"
   },
