@@ -5,6 +5,7 @@ import { healthCheck, neode } from "neo4j";
 import { Logger } from "utils";
 
 const logger = new Logger();
+
 const { PORT = 4000 } = process.env;
 
 try {

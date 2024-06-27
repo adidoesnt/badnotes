@@ -1,6 +1,6 @@
 import chalk, { type ChalkInstance } from "chalk";
-
-const hello = chalk.blue;
+import { join } from "path";
+import { writeFileSync, mkdirSync } from "fs";
 
 enum Level {
     INFO = "INFO",
@@ -16,17 +16,54 @@ const LevelMap: Record<Level, ChalkInstance> = {
     DEBUG: chalk.blue,
 };
 
-export class Logger {
-    filePaths?: Record<Level, string | undefined>;
+type FileNames = Record<Level, string | undefined>;
 
-    constructor(filePaths?: Record<Level, string | undefined>) {
-        this.filePaths = filePaths;
+type Config = {
+    fileNames?: FileNames | string;
+    useSingleLogFile?: boolean;
+    onlyConsole?: boolean;
+};
+
+export class Logger {
+    config: Config;
+
+    constructor(
+        config: Config = {
+            onlyConsole: true,
+        },
+    ) {
+        if (config.useSingleLogFile && !config.onlyConsole) {
+            const fileName = config.fileNames as string;
+            if (typeof fileName !== "string") {
+                throw new Error(
+                    "fileName should be a string when useSingleLogFile is true",
+                );
+            }
+            config.fileNames = {
+                [Level.INFO]: fileName,
+                [Level.WARN]: fileName,
+                [Level.ERROR]: fileName,
+                [Level.DEBUG]: fileName,
+            } as FileNames;
+        }
+        this.config = config;
     }
 
     getMessage(level: Level, message: string, additional?: object): string {
         const now = new Date().toLocaleString();
         const formattedMessage = `[${now}] [${level}] ${message}`;
+        !this.config.onlyConsole && this.writeMessage(level, formattedMessage);
         return LevelMap[level](formattedMessage, JSON.stringify(additional));
+    }
+
+    writeMessage(level: Level, formattedMessage: string): void {
+        const fileName = (this.config.fileNames as FileNames)?.[level];
+        if (fileName) {
+            const dirPath = join(__dirname, "..", "..", "logs");
+            mkdirSync(dirPath, { recursive: true });
+            const filePath = join(dirPath, fileName);
+            writeFileSync(filePath, `${formattedMessage}\n`, { flag: "a" });
+        }
     }
 
     info(message: string, additional?: object): void {
