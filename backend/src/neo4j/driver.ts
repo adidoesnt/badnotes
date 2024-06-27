@@ -1,5 +1,4 @@
 import Neode from "neode";
-import { registerNoteModel, registerUserModel } from "neo4j/models";
 import { Logger } from "utils";
 import { relative } from "path";
 
@@ -33,9 +32,3 @@ export const neode: Neode = new Neode(
                 : "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
     },
 );
-
-export const registerModels = () => {
-    logger.debug("Registering models");
-    registerUserModel(neode);
-    registerNoteModel(neode);
-};

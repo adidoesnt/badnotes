@@ -1,12 +1,13 @@
-import type Neode from "neode";
+import { neode } from "neo4j/driver";
 import type { NodeProperty, PropertyType, SchemaObject } from "neode";
 import { v4 as uuidv4 } from "uuid";
 
 export type Note = typeof noteSchema;
 
 export const noteSchema = {
-    id: {
+    uid: {
         primary: true,
+        unique: true,
         type: "string" as PropertyType,
         default: () => uuidv4(),
     } as NodeProperty,
@@ -38,4 +39,4 @@ export const noteSchema = {
     } as NodeProperty | undefined,
 } as SchemaObject;
 
-export default (neode: Neode) => neode.model<Note>("Note", noteSchema);
+export const NoteModel = neode.model<Note>("Note", noteSchema);

@@ -1,2 +1,2 @@
-export { default as registerUserModel, userSchema } from "neo4j/models/user";
-export { default as registerNoteModel, noteSchema } from "neo4j/models/note";
+export { UserModel, userSchema, type User } from "neo4j/models/user";
+export { NoteModel, noteSchema, type Note } from "neo4j/models/note";

@@ -1,23 +1,35 @@
 import { gql } from "apollo-server-express";
 import type { Schema } from "gql/types";
+import { userService } from "neo4j/service";
 
 export const user: Schema = {
     typeDefs: gql`
         type User {
             username: String!
-            passwordHash: String!
+            password: String!
             createdAt: String!
             updatedAt: String!
         }
 
         type Query {
-            getUser(username: String!): User
-            getUsers: [User!]
+            user(username: String!): User
+            users: [User!]
         }
 
         type Mutation {
-            createUser(username: String!, passwordHash: String!): User!
+            user(username: String!, password: String!): User
         }
     `,
-    resolvers: {},
+    resolvers: {
+        Query: {
+            user: async (_, { username }) => {
+                return await userService.getUser({ username });
+            },
+        },
+        Mutation: {
+            user: async (_, { username, password }) => {
+                return await userService.createUser({ username, password });
+            },
+        },
+    },
 };

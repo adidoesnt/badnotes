@@ -1,7 +1,7 @@
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "gql";
-import { healthCheck, neode, registerModels } from "neo4j";
+import { healthCheck, neode } from "neo4j";
 import { Logger } from "utils";
 import { relative } from "path";
 
@@ -15,7 +15,6 @@ try {
     logger.info("Starting server");
 
     await healthCheck();
-    registerModels();
 
     const server = new ApolloServer({
         schema,

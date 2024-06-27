@@ -1,21 +1,16 @@
-import type Neode from "neode";
+import { neode } from "neo4j/driver";
 import type { NodeProperty, PropertyType, SchemaObject } from "neode";
-import { v4 as uuidv4 } from "uuid";
 
 export type User = typeof userSchema;
 
 export const userSchema = {
-    id: {
-        primary: true,
-        type: "string" as PropertyType,
-        default: () => uuidv4(),
-    } as NodeProperty,
     username: {
-        type: "string" as PropertyType,
-        required: true,
+        primary: true,
         unique: true,
+        required: true,
+        type: "string" as PropertyType,
     } as NodeProperty,
-    passwordHash: {
+    password: {
         type: "string" as PropertyType,
         required: true,
     } as NodeProperty,
@@ -29,4 +24,4 @@ export const userSchema = {
     } as NodeProperty,
 } as SchemaObject;
 
-export default (neode: Neode) => neode.model<User>("User", userSchema);
+export const UserModel = neode.model<User>("User", userSchema);
