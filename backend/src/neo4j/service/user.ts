@@ -59,3 +59,14 @@ export const checkIfUserExists = async ({
         logger.error("Error checking if user exists", error);
     }
 };
+
+export const getAllUsers = async () => {
+    try {
+        logger.debug("Getting all users");
+        const users = await userRepository.getUsers();
+        return users;
+    } catch (e) {
+        const error = e as Error;
+        logger.error("Error getting all users", error);
+    }
+};

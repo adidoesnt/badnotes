@@ -25,6 +25,9 @@ export const user: Schema = {
             user: async (_, { username }) => {
                 return await userService.getUser({ username });
             },
+            users: async () => {
+                return await userService.getAllUsers();
+            },
         },
         Mutation: {
             user: async (_, { username, password }) => {
