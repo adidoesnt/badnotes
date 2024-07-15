@@ -3,7 +3,6 @@ import { userRepository } from "neo4j/repository";
 import type { NodeProperty } from "neode";
 import { relative } from "path";
 import { Logger } from "utils";
-import { userService } from ".";
 
 const logger = new Logger({
     module: relative(process.cwd(), __filename),
@@ -48,7 +47,7 @@ export const getUser = async ({ username }: { username: string }) => {
 export const checkIfUserExists = async ({
     username,
 }: {
-    username: string | NodeProperty;
+    username: NodeProperty;
 }) => {
     try {
         logger.debug("Checking if user exists", { username });
