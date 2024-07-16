@@ -1,17 +1,13 @@
 import { UserModel, type User } from "neo4j/models";
 import { Logger } from "utils";
 import { relative } from "path";
+import type { FindOptions } from "neo4j/repository/types";
 
 const logger = new Logger({
     module: relative(process.cwd(), __filename),
 });
 
-export type FindOptions = {
-    properties?: Partial<User>;
-    limit?: number;
-    order?: string | object | any[];
-    skip?: number;
-};
+export type FindUserOptions = FindOptions<User>;
 
 export const createUser = async (data: User) => {
     try {
@@ -38,7 +34,7 @@ export const getUser = async ({ username }: { username: string }) => {
     }
 };
 
-export const getUsers = async (options?: FindOptions) => {
+export const getUsers = async (options?: FindUserOptions) => {
     try {
         const users = await UserModel.all(options);
         const usersObj = await users.toJson();

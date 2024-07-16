@@ -1,5 +1,6 @@
 import { gql } from "apollo-server-express";
 import type { Schema } from "gql/types";
+import { noteService } from "neo4j/service";
 
 export const note: Schema = {
     typeDefs: gql`
@@ -13,13 +14,18 @@ export const note: Schema = {
         }
 
         type Query {
-            getNote(uid: ID!): Note
-            getNotes: [Note!]
+            userNotes(username: String!): [Note!]
         }
 
         type Mutation {
-            createNote(title: String!, content: String!, author: String!): Note!
+            note(title: String!, content: String!, author: String!): Note!
         }
     `,
-    resolvers: {},
+    resolvers: {
+        Query: {
+            userNotes: async (_, { username }) => {
+                return await noteService.getNotesByUser({ username });
+            },
+        },
+    },
 };
